@@ -13,6 +13,10 @@ const Create = () => {
 
 	const header = { "Access-Control-Allow-Origin": "*" };
 
+	const handleBack = () => {
+		history("/read");
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("click");
@@ -36,44 +40,59 @@ const Create = () => {
 	return (
 		<>
 			<Header />
-			<form onSubmit={handleSubmit}>
-				<h2>Create</h2>
-				<div className="mb-3">
-					<label className="form-label">Name</label>
-					<input
-						type="text"
-						name="name"
-						className="form-control"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/>
+			<div className="main">
+				<div className="px-5 py-3 text-center">
+					<h3 className="my-4 title"> Add Data</h3>
 				</div>
+				<form onSubmit={handleSubmit}>
+					<div className="mb-3 ">
+						<label className="form-label update-label">Name:-</label>
+						<input
+							type="text"
+							name="name"
+							className="update-input"
+							value={name}
+							required
+							onChange={(e) => setName(e.target.value)}
+						/>
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label">Email address</label>
-					<input
-						type="email"
-						name="email"
-						className="form-control"
-						aria-describedby="emailHelp"
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-				</div>
+					<div className="mb-3">
+						<label className="form-label update-label">Email address:-</label>
+						<input
+							type="email"
+							name="email"
+							className="update-input"
+							required
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label">Image Url</label>
-					<br></br>
-					<input
-						type="text"
-						name="image"
-						onChange={(e) => setImage(e.target.value)}
-					/>
-				</div>
+					<div className="mb-3">
+						<label className="form-label update-label">Image Url:-</label>
+						<input
+							type="text"
+							required
+							name="image"
+							className="update-input"
+							onChange={(e) => setImage(e.target.value)}
+						/>
+					</div>
 
-				<button type="submit" className="btn btn-primary">
-					Submit
-				</button>
-			</form>
+					<div class="flex-parent jc-center">
+						<button type="submit" className="btn btns btn-primary">
+							Add Data
+						</button>
+						<button
+							type="button"
+							onClick={handleBack}
+							className="btn btns btn-primary"
+						>
+							back
+						</button>
+					</div>
+				</form>
+			</div>
 		</>
 	);
 };

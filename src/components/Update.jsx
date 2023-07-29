@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
+import { Link } from "react-router-dom";
+import "../App.css";
 
 const Update = () => {
 	const [id, setId] = useState("");
@@ -18,6 +20,10 @@ const Update = () => {
 		setEmail(localStorage.getItem("email"));
 		setImage(localStorage.getItem("image"));
 	}, []);
+
+	const handleBack = () => {
+		navigate("/read");
+	};
 
 	const handleUpdate = (e) => {
 		e.preventDefault();
@@ -36,52 +42,69 @@ const Update = () => {
 	return (
 		<>
 			<Header />
-			<h2>Update</h2>
+			<div className="px-5 py-3 text-center ">
+				<h3 className="my-4 title"> Update Data</h3>
+			</div>
+
 			<form onSubmit={handleUpdate}>
-				<div className="mb-3">
-					<label className="form-label">Name</label>
+				<div className="mb-3  ">
+					<label className="form-label update-label ">Name </label>
 					<input
 						type="text"
 						name="name"
-						className="form-control"
+						className="update-input"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
 				</div>
 
-				<div className="mb-3">
-					<label className="form-label">Email address</label>
+				<div className="mb-3 ">
+					<label className="form-label update-label">Email address</label>
 					<input
 						type="email"
 						name="email"
-						className="form-control"
+						className="update-input"
 						aria-describedby="emailHelp"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</div>
 
-				<div className="mb-3">
-					<label className="form-label">Image</label>
+				{/* <div className="mb-3">
+					<label className="form-label update-label">Image</label>
 					<br />
-					<img src={image} alt="img" width="40" height="30" />
-				</div>
+					<img
+						className="update-input"
+						src={image}
+						alt="img"
+						width="400"
+						height="300"
+					/>
+				</div> */}
 
 				<div className="mb-3">
-					<label className="form-label">Update Image Url</label>
+					<label className="form-label update-label"> Image Url</label>
 					<input
 						type="text"
 						name="image"
-						width="40"
-						height="30"
-						className="form-control"
+						className="update-input"
+						value={image}
 						onChange={(e) => setImage(e.target.value)}
 					/>
 				</div>
 
-				<button type="submit" className="btn btn-primary">
-					Update
-				</button>
+				<div class="flex-parent jc-center">
+					<button type="submit" className="btn btns  btn-primary">
+						Update Data
+					</button>
+					<button
+						type="button"
+						onClick={handleBack}
+						className="btn btns btn-primary"
+					>
+						back
+					</button>
+				</div>
 			</form>
 		</>
 	);

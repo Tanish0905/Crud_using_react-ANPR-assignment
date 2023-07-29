@@ -18,29 +18,34 @@ const View = () => {
 		setEmail(localStorage.getItem("email"));
 		setImage(localStorage.getItem("image"));
 	}, []);
+	const handleBack = () => {
+		navigate("/read");
+	};
 
 	return (
 		<>
 			<Header />
-			<h2>View</h2>
+			<div className="px-5 py-3 text-center">
+				<h3 className="my-4 title"> View Data</h3>
+			</div>
 			<form>
 				<div className="mb-3">
-					<label className="form-label">Name</label>
+					<label className="form-label update-label">Name</label>
 					<input
 						type="text"
 						name="name"
-						className="form-control"
+						className="form-control update-input"
 						value={name}
 						readOnly
 					/>
 				</div>
 
 				<div className="mb-3">
-					<label className="form-label">Email address</label>
+					<label className="form-label update-label">Email address</label>
 					<input
 						type="email"
 						name="email"
-						className="form-control"
+						className="form-control update-input"
 						aria-describedby="emailHelp"
 						value={email}
 						readOnly
@@ -48,9 +53,24 @@ const View = () => {
 				</div>
 
 				<div className="mb-3">
-					<label className="form-label">This is Stored Image</label>
-					<br />
-					<img src={image} alt="img" width="400" height="300" />
+					<label className="form-label update-label">
+						This is Stored Image
+					</label>
+					<img
+						src={image}
+						className="view-img"
+						alt="please enter valid image url"
+					/>
+				</div>
+
+				<div class="flex-parent jc-center">
+					<button
+						type="button"
+						onClick={handleBack}
+						className="btn btns  btn-primary"
+					>
+						Back
+					</button>
 				</div>
 			</form>
 		</>
